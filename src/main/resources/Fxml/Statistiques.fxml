@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="575.0" prefWidth="652.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafx_employe.Controllers.StatistiquesController">
+   <children>
+      <Label layoutX="237.0" layoutY="22.0" text="Statistiques">
+         <font>
+            <Font name="Arial" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="124.0" layoutY="76.0" text="Nombre d'employés">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelNbreEmps" alignment="CENTER" layoutX="414.0" layoutY="81.0" text="NB">
+         <font>
+            <Font size="15.0" />
+         </font></Label>
+      <Label layoutX="98.0" layoutY="116.0" text="Département avec le grand ">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="126.0" layoutY="142.0" text="nombre d'employés">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelDepAvecPEmps" alignment="CENTER" layoutX="414.0" layoutY="130.0" text="NB">
+         <font>
+            <Font size="15.0" />
+         </font></Label>
+      <Label layoutX="124.0" layoutY="212.0" text="Nombre d'employés">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="136.0" layoutY="238.0" text="par département">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <TableView fx:id="table" layoutX="322.0" layoutY="164.0" prefHeight="128.0" prefWidth="238.0">
+        <columns>
+          <TableColumn fx:id="colNomDept" prefWidth="127.20001220703125" text="Nom departement" />
+          <TableColumn fx:id="colNbreEmp" prefWidth="110.4000244140625" text="Nbre Employés" />
+        </columns>
+      </TableView>
+      <Label layoutX="90.0" layoutY="330.0" text="Masse salariale de l'entreprise">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelMasseSalEntr" alignment="CENTER" layoutX="414.0" layoutY="332.0" text="NB">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="140.0" layoutY="404.0" text="Masse salariale ">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="109.0" layoutY="430.0" text="de Chaque Departement">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tableMasseSal" layoutX="322.0" layoutY="379.0" prefHeight="128.0" prefWidth="238.0">
+         <columns>
+            <TableColumn fx:id="colNomDeptMSD" prefWidth="127.20001220703125" text="Nom departement" />
+            <TableColumn fx:id="colMasseSal" prefWidth="110.4000244140625" text="Masse Salariale" />
+         </columns>
+      </TableView>
+      <Button fx:id="btnBack" layoutX="34.0" layoutY="23.0" mnemonicParsing="false" onAction="#ActionRetourEnArriere" prefHeight="27.0" prefWidth="62.0" style="-fx-background-color: #ffaa80;" text="Back" />
+   </children>
+</AnchorPane>
