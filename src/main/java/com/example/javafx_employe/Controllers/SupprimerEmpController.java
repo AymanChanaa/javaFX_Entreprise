@@ -1,11 +1,14 @@
 package com.example.javafx_employe.Controllers;
 
+import com.example.javafx_employe.Metiers.DaoDepartement;
 import com.example.javafx_employe.Metiers.DaoEmployee;
+import com.example.javafx_employe.Metiers.Departement;
 import com.example.javafx_employe.Metiers.Employee;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -19,9 +22,11 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.Optional;
+import java.util.ResourceBundle;
 
-public class SupprimerEmpController {
+public class SupprimerEmpController implements Initializable {
 
     @FXML
     private Button btnBack;
@@ -56,24 +61,24 @@ public class SupprimerEmpController {
     @FXML
     private TableColumn<Employee, Float> tvSalaire;
 
+    private DaoEmployee daoEmp = new DaoEmployee();
+    private DaoDepartement daoDep = new DaoDepartement();
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        ObservableList<Employee> emp = daoEmp.All();
+        showEmployes(emp);
+    }
+
     @FXML
     void ActionRetourEnArriere(ActionEvent event) throws IOException {
-        // Obtenez la référence à la scène actuelle
         Scene currentScene = ((Node) event.getSource()).getScene();
-        // Obtenez la référence à la fenêtre actuelle (Stage)
         Stage currentStage = (Stage) currentScene.getWindow();
-        // Fermez la fenêtre actuelle (scène)
         currentStage.close();
-        // Chargez le fichier FXML de la scène principale (Stage Home)
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/Home.fxml"));
         Parent root = loader.load();
-        // Créez une nouvelle scène avec le contenu de Home.fxml
         Scene homeScene = new Scene(root);
-        // Créez une nouvelle fenêtre (Stage) pour la scène principale (Stage Home)
         Stage homeStage = new Stage();
-        // Définissez la scène principale (Stage Home) avec le contenu de Home.fxml
         homeStage.setScene(homeScene);
-        // Montrez la scène principale (Stage Home)
         homeStage.show();
     }
 
@@ -96,6 +101,14 @@ public class SupprimerEmpController {
     public void showEmploye(Employee emp){
         ObservableList<Employee> Emp = FXCollections.observableArrayList(emp);
         table.setItems(Emp);
+        tvId.setCellValueFactory(new PropertyValueFactory<Employee,Integer>("IdEmp"));
+        tvNom.setCellValueFactory(new PropertyValueFactory<Employee,String>("NomEmp"));
+        tvAge.setCellValueFactory(new PropertyValueFactory<Employee,Integer>("Age"));
+        tvSalaire.setCellValueFactory(new PropertyValueFactory<Employee,Float>("Salaire"));
+    }
+    public void showEmployes(ObservableList<Employee> E){
+        ObservableList<Employee> emps = E;
+        table.setItems(emps);
         tvId.setCellValueFactory(new PropertyValueFactory<Employee,Integer>("IdEmp"));
         tvNom.setCellValueFactory(new PropertyValueFactory<Employee,String>("NomEmp"));
         tvAge.setCellValueFactory(new PropertyValueFactory<Employee,Integer>("Age"));
@@ -126,4 +139,6 @@ public class SupprimerEmpController {
         }
 
     }
+
+
 }

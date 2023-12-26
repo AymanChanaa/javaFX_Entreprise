@@ -4,6 +4,8 @@ module com.example.javafx_employe {
 
     requires org.kordamp.bootstrapfx.core;
     requires java.sql;
+    requires mysql.connector.j;
+    requires java.naming;
 
     opens com.example.javafx_employe.Controllers;
     opens com.example.javafx_employe to javafx.fxml;

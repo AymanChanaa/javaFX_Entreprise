@@ -57,22 +57,14 @@ public class EmpsParDepController implements Initializable {
 
     @FXML
     void ActionRetourEnArriere(ActionEvent event) throws IOException {
-        // Obtenez la référence à la scène actuelle
         Scene currentScene = ((Node) event.getSource()).getScene();
-        // Obtenez la référence à la fenêtre actuelle (Stage)
         Stage currentStage = (Stage) currentScene.getWindow();
-        // Fermez la fenêtre actuelle (scène)
         currentStage.close();
-        // Chargez le fichier FXML de la scène principale (Stage Home)
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/Home.fxml"));
         Parent root = loader.load();
-        // Créez une nouvelle scène avec le contenu de Home.fxml
         Scene homeScene = new Scene(root);
-        // Créez une nouvelle fenêtre (Stage) pour la scène principale (Stage Home)
         Stage homeStage = new Stage();
-        // Définissez la scène principale (Stage Home) avec le contenu de Home.fxml
         homeStage.setScene(homeScene);
-        // Montrez la scène principale (Stage Home)
         homeStage.show();
     }
 
@@ -83,14 +75,12 @@ public class EmpsParDepController implements Initializable {
     }
 
     public void showEmployes(ObservableList<Employee> E){
-
         ObservableList<Employee> emps = E;
         table.setItems(emps);
         colId.setCellValueFactory(new PropertyValueFactory<Employee,Integer>("IdEmp"));
         colNom.setCellValueFactory(new PropertyValueFactory<Employee,String>("NomEmp"));
         colAge.setCellValueFactory(new PropertyValueFactory<Employee,Integer>("Age"));
         colSalaire.setCellValueFactory(new PropertyValueFactory<Employee,Float>("Salaire"));
-
     }
 
     @FXML
@@ -106,6 +96,10 @@ public class EmpsParDepController implements Initializable {
                 showEmployes(daoEmp.EmpsParDep(idDept));
             } else {
                 LabelEmpsParDep.setText("Département non trouvé.");
+                String title= "Opération échoué";
+                String headerText = "Recherche échoué";
+                String contentText = "Le nom du département ne se trouve pas, Vérifier l'ID entré!";
+                AlertsController.Warning(title,headerText,contentText);
             }
         }
         catch (Exception e){

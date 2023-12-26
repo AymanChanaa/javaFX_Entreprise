@@ -44,6 +44,13 @@ public class AjoutEmpController {
             Employee emp = new Employee(0,tfNom.getText(),Float.parseFloat(tfSalaire.getText()),
                     Integer.parseInt(tfAge.getText()),dep.getIdDept());
             DaoEmployee daoEmp = new DaoEmployee();
+            if (Integer.parseInt(tfAge.getText()) < 18 || Integer.parseInt(tfAge.getText()) > 63){
+                String title= "Opération échoué";
+                String headerText = "Ajout Employé échoué";
+                String contentText = "L'âge doit être entre 18 et 63!!";
+                AlertsController.Error(title,headerText,contentText);
+                return;
+            }
             daoEmp.Create(emp);
             String title= "Opération réussie";
             String headerText = "Ajout Employé";
@@ -59,22 +66,14 @@ public class AjoutEmpController {
     }
     @FXML
     void ActionRetourEnArriere(ActionEvent event) throws IOException {
-        // Obtenez la référence à la scène actuelle
         Scene currentScene = ((Node) event.getSource()).getScene();
-        // Obtenez la référence à la fenêtre actuelle (Stage)
         Stage currentStage = (Stage) currentScene.getWindow();
-        // Fermez la fenêtre actuelle (scène)
         currentStage.close();
-        // Chargez le fichier FXML de la scène principale (Stage Home)
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/Home.fxml"));
         Parent root = loader.load();
-        // Créez une nouvelle scène avec le contenu de Home.fxml
         Scene homeScene = new Scene(root);
-        // Créez une nouvelle fenêtre (Stage) pour la scène principale (Stage Home)
         Stage homeStage = new Stage();
-        // Définissez la scène principale (Stage Home) avec le contenu de Home.fxml
         homeStage.setScene(homeScene);
-        // Montrez la scène principale (Stage Home)
         homeStage.show();
     }
 
