@@ -141,7 +141,8 @@ public class SupprimerEmpController implements Initializable {
     @FXML
     void effacertfId(ActionEvent event) {
         tfId.setText("");
-        table.getItems().clear();
+        ObservableList<Employee> emp = daoEmp.All();
+        showEmployes(emp);
         btnSupprimer.setDisable(true);
     }
 
